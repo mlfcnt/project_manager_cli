@@ -1,4 +1,3 @@
-import packageJson from "./package.json";
 import { database } from "./drizzle";
 import prompts from "prompts";
 import { fetchInitialData } from "./initialDataFetch";
