@@ -150,6 +150,39 @@ const main = async () => {
     `Temps enregistrés et visibles via https://project-manager.adsoftware-tech.com/projects/${projectId}/backlog/${userStoryId}`
   );
 
+  const { addAgileTime } = await prompts({
+    type: "confirm",
+    name: "addAgileTime",
+    message: `Voulez-vous rajouter 10% (${Math.round(
+      minutes * 0.1
+    )} minutes) de ce temps en Agile/Réunion ?`,
+    initial: false,
+  });
+
+  if (addAgileTime) {
+    const { agileDescription } = await prompts({
+      type: "text",
+      name: "agileDescription",
+      message: "Description pour le temps Agile/Réunion",
+      initial: "Temps Agile/Réunion",
+    });
+
+    await db.insert(timeInput).values({
+      at: new Date().toISOString(),
+      minutes: Math.round(minutes * 0.1),
+      description: agileDescription,
+      userId,
+      themeId: themes.find((x) => x.name === "Agile")?.id,
+      applicationId,
+      customerId,
+      sourceId,
+    });
+
+    console.log(
+      `Temps Agile/Réunion enregistrés et visibles via https://project-manager.adsoftware-tech.com/times`
+    );
+  }
+
   process.exit(0);
 };
 

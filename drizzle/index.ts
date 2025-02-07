@@ -8,7 +8,7 @@ export const database = (
     logger?: boolean;
   } = {}
 ) => {
-  const connectionString = `postgresql://${env.DB_USER}:${env.DB_PASS}@${env.DB_HOST}:${env.DB_PORT}/${env.DB_NAME}`;
+  const connectionString = `postgresql://${env.PM_DB_USER}:${env.PM_DB_PASS}@${env.PM_DB_HOST}:${env.PM_DB_PORT}/${env.PM_DB_NAME}`;
   const pool = new Pool({
     connectionString,
   });
