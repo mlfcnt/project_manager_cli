@@ -172,7 +172,7 @@ const main = async () => {
       minutes: Math.round(minutes * 0.1),
       description: agileDescription,
       userId,
-      themeId: themes.find((x) => x.name === "Agile")?.id,
+      themeId: themes.find((x) => x.name.toLowerCase().includes("agile"))?.id,
       applicationId,
       customerId,
       sourceId,
